@@ -1,0 +1,65 @@
+import React from 'react';
+import WeatherIcons from 'react-weathericons';
+import PropTypes from 'prop-types';
+
+import { CLOUD,
+		CLOUDY,
+		SUN,
+		RAIN,
+		SNOW,
+		WINDY,
+		THUNDER,
+		DRIZZLE } from '../../../constants/weathers';
+
+import './styles.css'
+
+const stateToIconName = weatherState => {
+	switch (weatherState) {
+		case CLOUD:
+			return "cloud";
+
+		case CLOUDY:
+			return "cloudy";
+
+		case SUN:
+			return "day-sunny";
+
+		case RAIN:
+			return "rain";
+
+		case SNOW:
+			return "snow";
+
+		case WINDY:
+			return "windy";
+
+		case THUNDER:
+			return "day-thunderstorm";
+
+		case DRIZZLE:
+			return "day-shower"
+		
+		default:
+			// statements_def
+			return "day-sunny";
+	}
+};
+
+
+const getWeatherIcon = weatherState => {
+	return (<WeatherIcons className='wicon' name={stateToIconName(weatherState)} size="4x" />);
+};
+
+
+const WeTemperature = ({ temperature, weatherState }) => (
+	<div className='weTemperatureCont'>
+		{getWeatherIcon(weatherState)}
+		<span className='temperature'>{`${temperature} `}</span>
+		<span className='temperaturetype'>C°</span>	
+	</div>
+);
+
+WeTemperature.propTypes = {
+	temperature: PropTypes.number.isRequired
+};
+export default WeTemperature;
